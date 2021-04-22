@@ -9,6 +9,7 @@ export const MainPage = () => {
     <>
       <div className="container pt-4"> 
         <Form/>
+        <hr/>
         <Notes notes={notes} />
       </div>
     </>
