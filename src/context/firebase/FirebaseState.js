@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { REMOVE_NOTE, SHOW_LOADER } from '../types';
+import { ADD_NOTE, REMOVE_NOTE, SHOW_LOADER, FETCH_NOTES } from '../types';
 import { FirebaseContext } from "./firebaseContext"
 import { firebaseReducer } from './firebaseReducer';
 import axios from 'axios'
@@ -18,16 +18,27 @@ export const FirebaseState = ({children}) => {
   const fetchNotes = async () => {
     showLoader();
     const res = await axios.get( `${url}/notes.json`);
-    console.log('fetchNotes', res.data);
+    const payload = Object.keys(res.data || {}).map(key => ({
+      ...res.data[key], 
+      id:key
+    }));
+    dispatch({ type:FETCH_NOTES, payload });
   };
 
-  const addNotes = async title => {
+  const addNote = async title => {
     const note = {
-      title, date: new Date().toJSON()
+      title, 
+      date: [ 
+        new Date().toLocaleTimeString(),
+        new Date().toLocaleDateString(), 
+      ].join('; ')
     };
     const res = await axios.post(`${url}/notes.json`, note);
-
-    console.log('addNote', res.data);
+    const payload = {
+      ...note,
+      id: res.data.name
+    };
+    dispatch({ type: ADD_NOTE, payload });
   };
 
   const removeNote = async id => {
@@ -38,7 +49,7 @@ export const FirebaseState = ({children}) => {
   return (
     <FirebaseContext.Provider
       value={{
-        showLoader, fetchNotes, addNotes, removeNote, 
+        showLoader, fetchNotes, addNote, removeNote, 
         loading: state.loading,
         notes: state.notes
       }}
