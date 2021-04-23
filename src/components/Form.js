@@ -8,10 +8,10 @@ export const Form = () => {
   const submitHandler = event => {
     event.preventDefault();
     if (value.trim()) {
-      show({ text: ' Added new note!', type: 'success' });
+      show({ text: 'Added new note!', type: 'success' });
       setValue('');
     } else {
-      show({ text: ' Enter a title for the note.'});
+      show({ text: 'Enter a title for the note.'});
     }
     
   }

@@ -9,9 +9,9 @@ export const Alert = () => {
   };
 
   return (
-  <div className={`container alert alert-${alert.type || "warning"} alert-dismissible mt-3`}>
+  <div className={`container alert alert-${alert.type || "warning"} alert-dismissible mt-4`}>
     <strong>Warning!</strong>
-    {alert.text}
+    &nbsp; {alert.text}
     <button 
       type="button" 
       className="btn-close" 

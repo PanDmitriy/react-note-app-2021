@@ -7,7 +7,7 @@ export const MainPage = () => {
   // console.log(notes);
   return (
     <>
-      <div className="container pt-4"> 
+      <div className="container pt-3"> 
         <Form/>
         <hr/>
         <Notes notes={notes} />
