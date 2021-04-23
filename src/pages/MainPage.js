@@ -1,6 +1,6 @@
 import React from 'react';
-import { Form } from './Form';
-import { Notes } from './Notes';
+import { Form } from '../components/Form';
+import { Notes } from '../components/Notes';
 
 export const MainPage = () => {
   const notes = new Array(3).fill('').map( (_,i) => ({id: i, title: `Note № ${ i+1 }`}) );
