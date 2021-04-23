@@ -6,7 +6,7 @@ import { FirebaseContext } from '../context/firebase/firebaseContext';
 
 export const MainPage = () => {
   const { loading, notes, fetchNotes } = useContext(FirebaseContext);
-  console.log(fetchNotes);
+  
   useEffect( () => {
     fetchNotes();
     // eslint-disable-next-line
@@ -18,7 +18,7 @@ export const MainPage = () => {
         <Form/>
         <hr/>
         { 
-          loading ? <Loader/> : <Notes notes={notes} />
+          loading ? <Loader/> : <Notes notes={notes}/>
         }
       </div>
     </>
